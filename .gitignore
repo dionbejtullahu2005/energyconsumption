@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.pipeline_staging/
+data/input/*.xlsx
+data/input/*.xls
+data/interim/*
+data/processed/*
+outputs/*
+!data/input/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!outputs/.gitkeep
+*.egg-info/
+.docx_qa/
+tmp/

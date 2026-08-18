@@ -1,0 +1,61 @@
+{
+  "analysis": {
+    "start_date": "2025-06-01",
+    "end_date": "2026-06-30",
+    "profile_start_date": "2025-07-01",
+    "profile_end_date": "2026-06-30",
+    "peak_hours": [7, 18],
+    "weekday_numbers": [0, 1, 2, 3, 4],
+    "weekend_numbers": [5, 6]
+  },
+  "profile_metrics": {
+    "seasonality_index_threshold": 1.15,
+    "seasonality_difference_threshold": 0.10,
+    "similar_profile_correlation": 0.80,
+    "partly_different_profile_correlation": 0.50
+  },
+  "external_factors": {
+    "weather_location": "Prishtinë",
+    "latitude": 42.6629,
+    "longitude": 21.1655,
+    "timezone": "Europe/Belgrade",
+    "hdd_base_c": 18.0,
+    "cdd_base_c": 18.0,
+    "weather_correlation_threshold": 0.30,
+    "minimum_days_for_weather_analysis": 90,
+    "cold_context_threshold_c": 5.0,
+    "hot_context_threshold_c": 30.0
+  },
+  "quality": {
+    "unusable_missing_share": 0.10,
+    "zero_run_hours": 48,
+    "extreme_multiple_of_mean": 50.0
+  },
+  "outliers": {
+    "hourly_zscore_threshold": 3.0,
+    "sector_zscore_threshold": 2.0
+  },
+  "clustering": {
+    "k_min": 2,
+    "k_max": 10,
+    "random_state": 42,
+    "scaler": "minmax",
+    "n_init": 50,
+    "features": [
+      "peak_offpeak_ratio",
+      "weekday_weekend_ratio",
+      "coefficient_of_variation",
+      "load_factor",
+      "summer_index",
+      "winter_index"
+    ]
+  },
+  "inputs": {
+    "hourly_workbook": "Enerco_June_2025-June_2026_Hourly_Interval_Meters_ANONYMIZED.xlsx",
+    "confidential_key_workbook": "Enerco_Kyci_Konfidencial_Kompanite.xlsx",
+    "prosumer_sheet_match": "prosumer"
+  },
+  "privacy": {
+    "allow_real_company_names_in_outputs": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "retrieved_on": "2026-08-17",
+  "weather_source": "Open-Meteo Historical Weather API",
+  "weather_url": "https://archive-api.open-meteo.com/v1/archive",
+  "weather_requested_coordinates": [
+    42.6629,
+    21.1655
+  ],
+  "weather_returned_coordinates": [
+    42.7065,
+    21.137371
+  ],
+  "weather_elevation_m": 599.0,
+  "weather_timezone": "Europe/Belgrade",
+  "holiday_source_2025": "https://bqk-kos.org/wp-content/uploads/2025/01/Kalendari-i-festave-2025.pdf",
+  "holiday_source_2026": "https://bqk-kos.org/wp-content/uploads/2025/12/kalendari-i-festave-2026.pdf",
+  "holiday_law": "Ligji nr. 03/L-064 për Festat Zyrtare në Republikën e Kosovës",
+  "prishtina_proxy_limitation": "Temperatura e Prishtinës përdoret për të gjitha kompanitë pa lokacion anonim."
+}
