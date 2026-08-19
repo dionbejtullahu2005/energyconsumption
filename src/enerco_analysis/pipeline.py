@@ -9,7 +9,6 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
-
 from enerco_analysis.clustering import build_company_clusters
 from enerco_analysis.config import ProjectPaths, ensure_project_directories, load_config
 from enerco_analysis.external_factors import (
