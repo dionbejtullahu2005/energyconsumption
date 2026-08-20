@@ -23,4 +23,6 @@ HAPAT PER EKZEKUTIMIN E PROJEKTIT
        python -m pytest -q
    
 8. Nisja e Streamlit per UI:
-       python -m streamlit run app.py 
+       python -m streamlit run app.py
+
+   p.s. nese kerkon email kur behet run Streamlit, vetem shtyp ENTER
