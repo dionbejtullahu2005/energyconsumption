@@ -11,9 +11,7 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 from openpyxl import load_workbook
-
 from enerco_analysis.quality import _normalise_date, _parse_meter_header
-
 
 def _chunks(iterator: Any, size: int) -> Any:
     batch: list[tuple[Any, ...]] = []
@@ -24,7 +22,6 @@ def _chunks(iterator: Any, size: int) -> Any:
             batch = []
     if batch:
         yield batch
-
 
 def _quality_lookup(quality_report_path: Path) -> dict[tuple[str, str, str], dict[str, Any]]:
     if quality_report_path.suffix.lower() == ".parquet":
