@@ -9,9 +9,7 @@ from typing import Any, Iterable
 import pandas as pd
 from openpyxl import load_workbook
 
-
 TIME_COLUMNS = ("PeriodYear", "PeriodMonth", "WeekDay", "Date", "Hour", "Tariff")
-
 
 @dataclass
 class SeriesStats:
