@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
 
-
 IDENTITY_COLUMNS = ["company_id", "meter_id", "energy_flow"]
 VALUE_COLUMNS = [
     "company_id",
