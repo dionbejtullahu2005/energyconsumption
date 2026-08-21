@@ -1,7 +1,5 @@
 from pathlib import Path
-
 from enerco_analysis.config import ProjectPaths, load_config
-
 
 def test_default_configuration_is_valid() -> None:
     root = Path(__file__).resolve().parents[1]
