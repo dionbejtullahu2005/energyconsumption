@@ -36,7 +36,6 @@ def _make_scaler(name: str) -> Any:
         return RobustScaler()
     raise ValueError(f"Scaler i panjohur: {name}")
 
-
 def _elbow_k(k_values: list[int], inertias: list[float]) -> int:
     if len(k_values) < 3:
         return k_values[0]
