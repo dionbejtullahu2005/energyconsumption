@@ -100,7 +100,6 @@ def _monthly_profiles(
     monthly["seasonality_index"] = monthly["month_mean_kwh"] / monthly["profile_period_mean_kwh"]
     return monthly
 
-
 def _seasonality_and_trend(
     monthly: pd.DataFrame,
     keys: list[str],
