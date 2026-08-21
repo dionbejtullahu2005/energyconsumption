@@ -10,7 +10,6 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-
 def _joined_names(values: pd.Series) -> str | None:
     names = sorted({str(value) for value in values.dropna() if str(value).strip()})
     return "; ".join(names) if names else None
