@@ -1,7 +1,5 @@
 import pandas as pd
-
 from enerco_analysis.profiles import _basic_metrics
-
 
 def test_basic_profile_metrics() -> None:
     frame = pd.DataFrame(
