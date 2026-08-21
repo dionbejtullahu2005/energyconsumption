@@ -1,7 +1,5 @@
 import pandas as pd
-
 from enerco_analysis.outliers import _zscore_outliers
-
 
 def test_hourly_zscore_outlier_detection() -> None:
     frame = pd.DataFrame(
