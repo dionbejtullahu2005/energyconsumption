@@ -1,11 +1,9 @@
 from __future__ import annotations
-
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from math import sqrt
 from pathlib import Path
 from typing import Any, Iterable
-
 import pandas as pd
 from openpyxl import load_workbook
 
