@@ -17,7 +17,6 @@ from enerco_analysis.external_factors import (
     prepare_external_factors,
 )
 
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="enerco-analysis",
