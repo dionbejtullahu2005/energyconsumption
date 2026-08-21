@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 import json
 from pathlib import Path
-
 import pytest
-
 from enerco_analysis.cli import build_parser
 from enerco_analysis.config import ProjectPaths
 from enerco_analysis.pipeline import run_all
