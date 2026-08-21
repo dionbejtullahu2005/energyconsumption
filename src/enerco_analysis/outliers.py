@@ -49,7 +49,6 @@ def _zscore_outliers(
     )
     return result
 
-
 def _company_hourly_from_long(long_path: Path) -> pd.DataFrame:
     columns = [
         "company_id", "energy_flow", "interval_start", "date", "hour_1_24",
