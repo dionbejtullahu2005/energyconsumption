@@ -1,7 +1,5 @@
 import pandas as pd
-
 from enerco_analysis.external_factors import _holiday_effects, _weather_sensitivity
-
 
 def test_weather_sensitivity_detects_cooling_pattern() -> None:
     days = pd.date_range("2025-06-01", periods=100, freq="D")
