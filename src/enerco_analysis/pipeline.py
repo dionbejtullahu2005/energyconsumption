@@ -24,7 +24,6 @@ from enerco_analysis.transform import transform_to_long
 
 SUMMARY_FILE = "pipeline_run_summary.json"
 
-
 def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
