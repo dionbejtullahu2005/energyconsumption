@@ -159,7 +159,7 @@ def main() -> int:
     if args.command == "external-factors":
         ensure_project_directories(paths)
         config = load_config(paths.config_file)
-        raw_weather = paths.external_dir / "prishtina_open_meteo_raw.json"
+        raw_weather = paths.external_dir / config["external_factors"]["weather_raw_filename"]
         holidays_csv = paths.external_dir / "kosovo_official_holidays.csv"
         long_path = paths.processed_dir / "hourly_consumption_long.parquet"
         required = [raw_weather, holidays_csv, long_path, paths.processed_dir / "company_hourly_outliers.parquet"]
@@ -175,7 +175,7 @@ def main() -> int:
         enriched_path = paths.processed_dir / "hourly_consumption_enriched.parquet"
         print("Duke pasuruar konsumin orar me motin dhe festat...")
         enrichment_summary = enrich_hourly_consumption(
-            long_path, paths.external_dir, enriched_path
+            long_path, paths.external_dir, enriched_path, config
         )
         analysis_report = paths.output_dir / "weather_holiday_analysis.xlsx"
         outlier_report = paths.output_dir / "outlier_report_enriched.xlsx"

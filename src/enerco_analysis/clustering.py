@@ -129,6 +129,39 @@ def _save_pca_chart(assignments: pd.DataFrame, output_path: Path) -> None:
     plt.close(figure)
 
 
+def _cluster_totals(assignments: pd.DataFrame) -> pd.DataFrame:
+    """Përmbledh numrin e kompanive dhe energjinë reale të tyre për çdo klaster."""
+    required = {
+        "cluster_number", "cluster_id", "cluster_description", "company_id", "energy_total_kwh"
+    }
+    missing = sorted(required.difference(assignments.columns))
+    if missing:
+        raise ValueError(f"Mungojnë kolonat për totalet e klasterit: {missing}")
+    totals = assignments.groupby(
+        ["cluster_number", "cluster_id", "cluster_description"], observed=True
+    ).agg(
+        company_count=("company_id", "nunique"),
+        total_energy_kwh=("energy_total_kwh", "sum"),
+    ).reset_index()
+    totals["total_energy_mwh"] = totals["total_energy_kwh"] / 1000
+    return totals
+
+
+def ensure_cluster_energy_totals(
+    centers: pd.DataFrame, assignments: pd.DataFrame
+) -> pd.DataFrame:
+    """Shton totalet kur UI lexon një cluster_centers të krijuar nga versioni i vjetër."""
+    result = centers.copy()
+    required_totals = {"total_energy_kwh", "total_energy_mwh"}
+    if required_totals.issubset(result.columns):
+        return result
+    totals = _cluster_totals(assignments)[
+        ["cluster_number", "total_energy_kwh", "total_energy_mwh"]
+    ]
+    result = result.drop(columns=list(required_totals.intersection(result.columns)))
+    return result.merge(totals, on="cluster_number", how="left", validate="one_to_one")
+
+
 def build_company_clusters(
     company_metrics_path: Path,
     processed_dir: Path,
@@ -223,10 +256,12 @@ def build_company_clusters(
     assignments["seasonality_input_reliable"] = assignments["seasonality_reliable"]
     assignments["sector_comparison_status"] = "Nuk disponohet metadata e sektorit"
 
-    cluster_sizes = assignments.groupby(
-        ["cluster_number", "cluster_id", "cluster_description"], observed=True
-    ).size().rename("company_count").reset_index()
-    centers = centers.merge(cluster_sizes, on=["cluster_number", "cluster_id", "cluster_description"])
+    cluster_totals = _cluster_totals(assignments)
+    centers = centers.merge(
+        cluster_totals,
+        on=["cluster_number", "cluster_id", "cluster_description"],
+        validate="one_to_one",
+    )
     evaluation = pd.DataFrame(
         {"k": k_values, "inertia": inertias, "silhouette_score": silhouettes}
     )
@@ -271,8 +306,9 @@ def build_company_clusters(
         "silhouette_choice": silhouette_choice,
         "selected_k": selected_k,
         "selected_silhouette_score": float(max(silhouettes)),
-        "minimum_cluster_size": int(cluster_sizes["company_count"].min()),
-        "maximum_cluster_size": int(cluster_sizes["company_count"].max()),
+        "minimum_cluster_size": int(cluster_totals["company_count"].min()),
+        "maximum_cluster_size": int(cluster_totals["company_count"].max()),
+        "clustered_total_energy_kwh": float(cluster_totals["total_energy_kwh"].sum()),
         "pca_explained_variance_2d": float(pca.explained_variance_ratio_.sum()),
         "sector_comparison_completed": False,
         "sector_comparison_blocker": "Metadata e sektorit nuk disponohet",

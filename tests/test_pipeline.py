@@ -22,7 +22,7 @@ def _project(tmp_path: Path) -> ProjectPaths:
             "weekend_numbers": [5, 6],
         },
         "profile_metrics": {},
-        "external_factors": {},
+        "external_factors": {"weather_raw_filename": "kosovo_district_weather_raw.json"},
         "quality": {"unusable_missing_share": 0.1, "zero_run_hours": 48},
         "outliers": {},
         "clustering": {"k_min": 2, "k_max": 3},
@@ -34,7 +34,7 @@ def _project(tmp_path: Path) -> ProjectPaths:
     }
     (tmp_path / "config" / "project.json").write_text(json.dumps(config), encoding="utf-8")
     (tmp_path / "data" / "input" / "source.xlsx").write_bytes(b"source")
-    (tmp_path / "data" / "external" / "prishtina_open_meteo_raw.json").write_text(
+    (tmp_path / "data" / "external" / "kosovo_district_weather_raw.json").write_text(
         "{}", encoding="utf-8"
     )
     (tmp_path / "data" / "external" / "kosovo_official_holidays.csv").write_text(
@@ -74,10 +74,10 @@ def _install_success_stubs(monkeypatch: pytest.MonkeyPatch) -> None:
 
     def prepare(_weather, _holidays, external, report, _config):
         _write(report)
-        _write(external / "prishtina_weather_hourly.parquet")
+        _write(external / "kosovo_district_weather_hourly.parquet")
         return {"weather_rows": 1}
 
-    def enrich(_long, _external, output):
+    def enrich(_long, _external, output, _config):
         _write(output)
         return {"rows": 1}
 

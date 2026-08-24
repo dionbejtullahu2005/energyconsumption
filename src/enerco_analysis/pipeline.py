@@ -72,8 +72,10 @@ def _staging_paths(paths: ProjectPaths, run_id: str) -> ProjectPaths:
     )
 
 
-def _copy_external_inputs(paths: ProjectPaths, staging: ProjectPaths) -> tuple[Path, Path]:
-    raw_weather = paths.external_dir / "prishtina_open_meteo_raw.json"
+def _copy_external_inputs(
+    paths: ProjectPaths, staging: ProjectPaths, config: dict[str, Any]
+) -> tuple[Path, Path]:
+    raw_weather = paths.external_dir / config["external_factors"]["weather_raw_filename"]
     holidays = paths.external_dir / "kosovo_official_holidays.csv"
     missing = [path for path in (raw_weather, holidays) if not path.is_file()]
     if missing:
@@ -130,12 +132,13 @@ def _staged_outputs(staging: ProjectPaths) -> list[tuple[Path, Path]]:
         staging.output_dir: "outputs",
         staging.external_dir: "data/external",
     }
-    external_inputs = {"prishtina_open_meteo_raw.json", "kosovo_official_holidays.csv"}
     for source_root, destination_root in destinations.items():
         if not source_root.exists():
             continue
         for source in sorted(path for path in source_root.rglob("*") if path.is_file()):
-            if source_root == staging.external_dir and source.name in external_inputs:
+            if source_root == staging.external_dir and (
+                source.name.endswith("_raw.json") or source.name == "kosovo_official_holidays.csv"
+            ):
                 continue
             relative = source.relative_to(source_root)
             mappings.append((source, staging.root.parent.parent / destination_root / relative))
@@ -259,7 +262,7 @@ def run_all(paths: ProjectPaths, progress: Callable[[str], None] = print) -> dic
         )
 
         def external_step() -> dict[str, Any]:
-            raw_weather, holidays = _copy_external_inputs(paths, staging)
+            raw_weather, holidays = _copy_external_inputs(paths, staging, config)
             source = prepare_external_factors(
                 raw_weather,
                 holidays,
@@ -269,7 +272,7 @@ def run_all(paths: ProjectPaths, progress: Callable[[str], None] = print) -> dic
             )
             enriched_path = staging.processed_dir / "hourly_consumption_enriched.parquet"
             enrichment = enrich_hourly_consumption(
-                long_path, staging.external_dir, enriched_path
+                long_path, staging.external_dir, enriched_path, config
             )
             analysis = analyze_external_factors(
                 enriched_path,

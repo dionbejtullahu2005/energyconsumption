@@ -1,19 +1,93 @@
 {
-  "retrieved_on": "2026-08-17",
+  "retrieved_at": "2026-08-24T09:20:10+00:00",
   "weather_source": "Open-Meteo Historical Weather API",
   "weather_url": "https://archive-api.open-meteo.com/v1/archive",
-  "weather_requested_coordinates": [
-    42.6629,
-    21.1655
+  "temperature_assignment": "Temperatura lokale lidhet me prefiksin e njehsorit; kompanitë me disa distrikte përdorin pesha fikse sipas energjisë historike.",
+  "districts": [
+    {
+      "meter_prefix": "DFE",
+      "district": "Ferizaj",
+      "requested_latitude": 42.3702,
+      "requested_longitude": 21.1483,
+      "returned_latitude": 42.425304,
+      "returned_longitude": 21.145374,
+      "elevation_m": 580.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    },
+    {
+      "meter_prefix": "DGJ",
+      "district": "Gjakovë",
+      "requested_latitude": 42.3803,
+      "requested_longitude": 20.4308,
+      "returned_latitude": 42.355007,
+      "returned_longitude": 20.454544,
+      "elevation_m": 356.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    },
+    {
+      "meter_prefix": "DGL",
+      "district": "Gjilan",
+      "requested_latitude": 42.4605,
+      "requested_longitude": 21.4694,
+      "returned_latitude": 42.495605,
+      "returned_longitude": 21.441177,
+      "elevation_m": 513.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    },
+    {
+      "meter_prefix": "DMI",
+      "district": "Mitrovicë",
+      "requested_latitude": 42.8914,
+      "requested_longitude": 20.866,
+      "returned_latitude": 42.917397,
+      "returned_longitude": 20.83086,
+      "elevation_m": 505.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    },
+    {
+      "meter_prefix": "DPE",
+      "district": "Pejë",
+      "requested_latitude": 42.6591,
+      "requested_longitude": 20.2883,
+      "returned_latitude": 42.636204,
+      "returned_longitude": 20.309734,
+      "elevation_m": 515.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    },
+    {
+      "meter_prefix": "DPR",
+      "district": "Prishtinë",
+      "requested_latitude": 42.6629,
+      "requested_longitude": 21.1655,
+      "returned_latitude": 42.7065,
+      "returned_longitude": 21.137371,
+      "elevation_m": 599.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    },
+    {
+      "meter_prefix": "DPZ",
+      "district": "Prizren",
+      "requested_latitude": 42.2139,
+      "requested_longitude": 20.7397,
+      "returned_latitude": 42.28471,
+      "returned_longitude": 20.68814,
+      "elevation_m": 418.0,
+      "timezone": "Europe/Belgrade",
+      "hourly_rows": 9480,
+      "daily_rows": 395
+    }
   ],
-  "weather_returned_coordinates": [
-    42.7065,
-    21.137371
-  ],
-  "weather_elevation_m": 599.0,
-  "weather_timezone": "Europe/Belgrade",
-  "holiday_source_2025": "https://bqk-kos.org/wp-content/uploads/2025/01/Kalendari-i-festave-2025.pdf",
-  "holiday_source_2026": "https://bqk-kos.org/wp-content/uploads/2025/12/kalendari-i-festave-2026.pdf",
-  "holiday_law": "Ligji nr. 03/L-064 për Festat Zyrtare në Republikën e Kosovës",
-  "prishtina_proxy_limitation": "Temperatura e Prishtinës përdoret për të gjitha kompanitë pa lokacion anonim."
+  "holiday_source": "Kalendari zyrtar i festave të Republikës së Kosovës"
 }
