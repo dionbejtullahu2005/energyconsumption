@@ -28,7 +28,6 @@ def _safe_ratio(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
     result = numerator / denominator
     return result.where(denominator > 0)
 
-
 def _basic_metrics(frame: pd.DataFrame, keys: list[str]) -> pd.DataFrame:
     grouped = frame.groupby(keys, observed=True, dropna=False)["energy_kwh"]
     base = grouped.agg(
