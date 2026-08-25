@@ -27,7 +27,6 @@ SUMMARY_FILE = "pipeline_run_summary.json"
 def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
-
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
