@@ -55,7 +55,6 @@ def _elbow_k(k_values: list[int], inertias: list[float]) -> int:
     distances = np.abs(line[0] * offsets[:, 1] - line[1] * offsets[:, 0]) / line_norm
     return k_values[int(np.argmax(distances))]
 
-
 def _cluster_description(
     center: pd.Series,
     overall_mean: pd.Series,
