@@ -46,7 +46,6 @@ def calculate_weather_metrics(daily: pd.DataFrame) -> dict[str, Any]:
     return {**correlations, "weather_sensitivity_label": label,
             "weather_analysis_reliable": len(valid) >= 90, "days_with_consumption": len(valid)}
 
-
 def calculate_holiday_effect(daily: pd.DataFrame) -> float:
     frame = daily.copy()
     frame["weekday_number"] = frame["date"].dt.weekday
