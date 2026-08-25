@@ -8,7 +8,6 @@ import pandas as pd
 def _safe_ratio(numerator: float, denominator: float) -> float:
     return numerator / denominator if pd.notna(denominator) and denominator != 0 else np.nan
 
-
 def calculate_period_metrics(frame: pd.DataFrame) -> dict[str, float]:
     consumption = frame.loc[frame["energy_flow"].eq("consumption_import")].copy()
     hourly = consumption.groupby(
