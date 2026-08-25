@@ -66,7 +66,6 @@ def validate_config(config: dict[str, Any]) -> None:
     if clustering["k_min"] < 2 or clustering["k_max"] < clustering["k_min"]:
         raise ValueError("Intervali clustering.k_min/k_max nuk është valid")
 
-
 def ensure_project_directories(paths: ProjectPaths) -> None:
     for directory in (
         paths.input_dir,
